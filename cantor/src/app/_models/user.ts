@@ -1,8 +1,11 @@
-export class User {
+import { UserCurrency } from './user-currency';
+
+export interface User {
     id: number;
-    username: string;
-    password: string;
+    login: string;
     firstName: string;
     lastName: string;
+    money: number;
     token?: string;
+    currencies: Array<UserCurrency>;
 }

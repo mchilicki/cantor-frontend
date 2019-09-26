@@ -7,15 +7,15 @@ import { UserService, AuthenticationService } from '../_services';
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent {
     loading = false;
-    users: User[];
+    user: User;
 
     constructor(private userService: UserService) { }
 
     ngOnInit() {
         this.loading = true;
-        this.userService.getAll().pipe(first()).subscribe(users => {
+        this.userService.getUser().subscribe((user: User) => {
             this.loading = false;
-            this.users = users;
+            this.user = user;
         });
     }
 }
