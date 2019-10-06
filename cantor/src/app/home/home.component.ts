@@ -1,15 +1,21 @@
 import { Component } from '@angular/core';
 import { first } from 'rxjs/operators';
 
-import { User } from '../_models';
+import { User, CantorCurrency } from '../_models';
 import { UserService, AuthenticationService } from '../_services';
+import { Observable } from 'rxjs';
+import { CantorCurrenciesService } from '../_services/cantor-currencies.service';
 
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent {
     loading = false;
     user: User;
+    cantorCurrencies: Array<CantorCurrency>;
 
-    constructor(private userService: UserService) { }
+    constructor(
+        private userService: UserService,
+        private cantorCurrenciesService: CantorCurrenciesService) {
+    }
 
     ngOnInit() {
         this.loading = true;
@@ -17,5 +23,9 @@ export class HomeComponent {
             this.loading = false;
             this.user = user;
         });
+        this.cantorCurrenciesService.getCantorCurrencies().subscribe(
+            (cantorCurrencies: Array<CantorCurrency>) => {
+                this.cantorCurrencies = cantorCurrencies;
+            });
     }
 }

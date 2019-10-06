@@ -1,7 +1,12 @@
-<div class="card mt-4">
-  <h4 class="card-header">Cantor Buying & Selling Panel</h4>
-  <div class="card-body">
-      <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
-      <div *ngIf="user">{{user.firstName}} {{user.lastName}} {{user.money}}</div>
+<div class="row">
+  <div class="col">
+    <div class="container">
+      <app-cantor-currencies [cantorCurrencies]="cantorCurrencies"></app-cantor-currencies>
+    </div>
+  </div>
+  <div class="col">
+    <div class="container">
+      <app-user-currencies [user]="user"></app-user-currencies>
+    </div>
   </div>
 </div>
